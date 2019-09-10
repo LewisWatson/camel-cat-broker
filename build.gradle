@@ -1,0 +1,22 @@
+plugins {
+	id 'org.springframework.boot' version '2.1.7.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+	id 'java'
+}
+
+group = 'com.comcarde.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.apache.camel:camel-spring-boot-starter:2.24.0'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation group: 'org.apache.camel', name: 'camel-test-spring', version: '2.24.1'
+	testImplementation group: 'org.apache.camel', name: 'camel-spring-javaconfig', version: '2.24.1'
+	compileOnly('org.projectlombok:lombok')
+    annotationProcessor('org.projectlombok:lombok')
+}
