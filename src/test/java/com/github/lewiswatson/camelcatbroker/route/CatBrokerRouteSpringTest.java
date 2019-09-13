@@ -1,6 +1,5 @@
 package com.github.lewiswatson.camelcatbroker.route;
 
-import com.github.lewiswatson.camelcatbroker.route.CatBrokerRoute;
 import org.apache.camel.EndpointInject;
 import org.apache.camel.Produce;
 import org.apache.camel.ProducerTemplate;
