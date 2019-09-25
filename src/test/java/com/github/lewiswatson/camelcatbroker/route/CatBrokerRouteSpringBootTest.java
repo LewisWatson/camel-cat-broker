@@ -52,7 +52,7 @@ public class CatBrokerRouteSpringBootTest {
     dlqEndpoint.expectedBodiesReceived(scratchyBritishBlueJson);
 
     /*
-     * When
+     * when
      */
 
     testProducer.sendBody(biteyTabbyCatJson);
