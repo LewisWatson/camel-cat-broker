@@ -1,5 +1,7 @@
 # camel-cat-broker
 
+![logo](docs/img/camel-cat-broker.svg)
+
 ## Integration Test
 
 All command examples were tested with kafka_2.12-2.3.0 and assume they are run from the root directory of a
