@@ -15,6 +15,7 @@ repositories {
 dependencies {
 	implementation 'org.apache.camel:camel-spring-boot-starter:2.24.0'
 	implementation 'org.apache.camel:camel-kafka:2.24.1'
+	implementation 'org.springframework.boot:spring-boot-starter-web' // only added to stop it shutting dowm immediatly...
 	implementation 'com.google.code.gson:gson:2.7'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.apache.camel:camel-test-spring:2.24.1'
