@@ -2,12 +2,12 @@ package com.github.lewiswatson.camelcatbroker.route;
 
 import org.apache.camel.spring.SpringRouteBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import com.github.lewiswatson.camelcatbroker.enricher.DestinationCatteryEnricher;
 import com.github.lewiswatson.camelcatbroker.model.Cattery;
 import com.github.lewiswatson.camelcatbroker.property.CatRouterProperties;
 
-@Component
+@Service
 public class CatBrokerRoute extends SpringRouteBuilder {
 
   @Autowired

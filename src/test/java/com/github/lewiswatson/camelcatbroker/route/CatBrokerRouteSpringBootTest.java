@@ -1,10 +1,5 @@
 package com.github.lewiswatson.camelcatbroker.route;
 
-import com.github.lewiswatson.camelcatbroker.CamelCatBrokerApplication;
-import com.github.lewiswatson.camelcatbroker.model.Cat;
-import com.github.lewiswatson.camelcatbroker.model.Cat.Breed;
-import com.github.lewiswatson.camelcatbroker.model.Cat.Temperment;
-import com.google.gson.Gson;
 import org.apache.camel.EndpointInject;
 import org.apache.camel.Produce;
 import org.apache.camel.ProducerTemplate;
@@ -15,12 +10,15 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.kafka.test.context.EmbeddedKafka;
+import com.github.lewiswatson.camelcatbroker.CamelCatBrokerApplication;
+import com.github.lewiswatson.camelcatbroker.model.Cat;
+import com.github.lewiswatson.camelcatbroker.model.Cat.Breed;
+import com.github.lewiswatson.camelcatbroker.model.Cat.Temperment;
+import com.google.gson.Gson;
 
 @RunWith(CamelSpringBootRunner.class)
 @SpringBootTest(classes = {CamelCatBrokerApplication.class})
 @EnableRouteCoverage
-@EmbeddedKafka
 public class CatBrokerRouteSpringBootTest {
 
   @Produce(uri = "{{cat-broker.route.cat-broker.from}}")
@@ -54,7 +52,7 @@ public class CatBrokerRouteSpringBootTest {
     dlqEndpoint.expectedBodiesReceived(scratchyBritishBlueJson);
 
     /*
-     * When
+     * when
      */
 
     testProducer.sendBody(biteyTabbyCatJson);

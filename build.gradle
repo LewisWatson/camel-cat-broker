@@ -4,8 +4,8 @@ plugins {
 	id 'java'
 }
 
-group = 'com.comcarde.example'
-version = '0.0.1-SNAPSHOT'
+group = 'com.github.lewiswaton'
+version = '0.1.0'
 sourceCompatibility = '1.8'
 
 repositories {
@@ -14,11 +14,17 @@ repositories {
 
 dependencies {
 	implementation 'org.apache.camel:camel-spring-boot-starter:2.24.0'
+	implementation 'org.apache.camel:camel-kafka:2.24.1'
+	implementation 'org.springframework.boot:spring-boot-starter-web' // only added to stop it shutting dowm immediatly...
 	implementation 'com.google.code.gson:gson:2.7'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation group: 'org.apache.camel', name: 'camel-test-spring', version: '2.24.1'
-	testImplementation group: 'org.apache.camel', name: 'camel-spring-javaconfig', version: '2.24.1'
-	testImplementation 'org.springframework.kafka:spring-kafka-test:2.2.8.RELEASE'
+	testImplementation 'org.apache.camel:camel-test-spring:2.24.1'
+	testImplementation 'org.apache.camel:camel-spring-javaconfig:2.24.1'
+	testImplementation 'org.springframework.kafka:spring-kafka'
+	testImplementation 'org.springframework.kafka:spring-kafka-test'
+	testImplementation 'org.awaitility:awaitility:4.0.1'
 	compileOnly('org.projectlombok:lombok')
+	testCompileOnly('org.projectlombok:lombok')
     annotationProcessor('org.projectlombok:lombok')
+    testAnnotationProcessor('org.projectlombok:lombok')
 }

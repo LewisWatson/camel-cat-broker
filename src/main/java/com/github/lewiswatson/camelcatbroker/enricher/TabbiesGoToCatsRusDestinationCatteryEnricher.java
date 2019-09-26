@@ -13,8 +13,8 @@ import lombok.extern.slf4j.Slf4j;
 @Builder
 public class TabbiesGoToCatsRusDestinationCatteryEnricher implements DestinationCatteryEnricher {
 
-  private CatRouterProperties properties;
-  private Gson gson;
+  private final CatRouterProperties properties;
+  private final Gson gson;
 
   @Override
   public void process(Exchange exchange) throws Exception {
