@@ -6,9 +6,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class ExampleRoute extends RouteBuilder {
 
+  public static final String EXAMPLE_ROUTE_ID = "example-route";
+
   @Override
   public void configure() throws Exception {
-    from("direct:start").filter(header("foo").isEqualTo("bar")).to("mock:result");
+    from("direct:start").routeId(EXAMPLE_ROUTE_ID).filter(header("foo").isEqualTo("bar"))
+        .to("mock:result");
   }
 
 }

@@ -1,8 +1,8 @@
 package com.github.lewiswatson.camelcatbroker.model;
 
 import lombok.Builder;
-import lombok.Value;
 import lombok.NonNull;
+import lombok.Value;
 
 @Value
 @Builder(toBuilder=true)
