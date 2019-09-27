@@ -7,7 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Added
+## [0.2.0] Document All The Things! 2019-09-27
+
+### [0.2.0] Added
 
 - High Level Design
 - Low Level Design
@@ -20,5 +22,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Spring Boot application with two camel routes, example and cat-broker
 - Opt-in kafka profile with instructuions for how to use it in the main README.md
 
-[Unreleased]: https://github.com/lewiswatson/camel-cat-broker/compare/0.1.0...HEAD
+[Unreleased]: https://github.com/lewiswatson/camel-cat-broker/compare/0.2.0...HEAD
+[0.2.0]: https://github.com/LewisWatson/camel-cat-broker/releases/tag/0.2.0
 [0.1.0]: https://github.com/LewisWatson/camel-cat-broker/releases/tag/0.1.0
