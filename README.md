@@ -18,7 +18,7 @@ An implementation of the `cat-broker` component in the [Cat Broker System High L
 ## Run
 
 ```sh
-java -jar camel-cat-broker-0.2.0-SNAPSHOT.jar
+java -jar camel-cat-broker.jar
 ```
 
 ### Enabling the `kafka` Profile
@@ -31,7 +31,7 @@ Enabling the `kafka` profile will result in [Kafka Component] endpoints being us
 is a great option for scaleable, decoupled systems.
 
 ```sh
-java -jar camel-cat-broker-0.2.0-SNAPSHOT.jar --spring-profiles-active=kafka
+java -jar camel-cat-broker.jar --spring-profiles-active=kafka
 ```
 
 ## Quick start
