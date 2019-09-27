@@ -10,10 +10,6 @@ An implementation of the `cat-broker` component in the [Cat Broker System High L
 
 ![component diagram](img/camel-cat-broker-component-diagram.svg)
 
-## EIP Route Diagram
-
-![EIP diagram](img/camel-cat-broker-route-EIP.svg)
-
 ## Glossary
 
 Definitions for terms used later in the document.
@@ -46,6 +42,10 @@ breed      | Enum: TABBY, BRITISH_BLUE, UNKNOWN | Domestic cats can be bred and 
 
 > note: the message has more fields in the [HLD][Cat Broker System High Level Design], but they are
 > not relevant to this component, so we don't list them!
+
+## EIP Route Diagram
+
+![EIP diagram](img/camel-cat-broker-route-EIP.svg)
 
 ## Components
 
