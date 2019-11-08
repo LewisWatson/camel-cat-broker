@@ -138,7 +138,10 @@ public class KafkaCatBrokerRouteSpringBootTest {
 
     // wait until kafka has received two cat messages, and has routed them appropriately to two
     // cattery producers (four messages in total).
-    Awaitility.await().until(() -> records.size() == 4);
+    Awaitility.await().until(() -> {
+        log.trace("records size = {}", records.size());
+        return records.size() == 4;
+    });
 
     /*
      * then
