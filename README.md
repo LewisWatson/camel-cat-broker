@@ -1,5 +1,7 @@
 # Camel Cat Broker
 
+[![Build Status](https://travis-ci.org/LewisWatson/camel-cat-broker.svg?branch=develop)](https://travis-ci.org/LewisWatson/camel-cat-broker)
+
 Looking for a suitable [Cattery] for your furry friend? With the power of [Apache Camel],
 [Apache Kafka], and advanced algorithms, **Camel Cat Broker** will route your cat to the purr-fect
 [Cattery] based on your cats unique paw-perties!
