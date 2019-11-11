@@ -20,7 +20,6 @@ import org.junit.ClassRule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.listener.ContainerProperties;
@@ -52,9 +51,6 @@ public class KafkaCatBrokerRouteSpringBootTest {
 
   @Autowired
   private CamelContext camelContext;
-
-  @Value("${cat-broker.route.cat-broker.name}")
-  private String catBrokerRouteName;
 
   private KafkaMessageListenerContainer<String, String> container;
 
