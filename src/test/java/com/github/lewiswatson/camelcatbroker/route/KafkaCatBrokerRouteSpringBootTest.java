@@ -29,6 +29,7 @@ import org.springframework.kafka.test.rule.EmbeddedKafkaRule;
 import org.springframework.kafka.test.utils.ContainerTestUtils;
 import org.springframework.kafka.test.utils.KafkaTestUtils;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.TestPropertySource;
 import com.github.lewiswatson.camelcatbroker.CamelCatBrokerApplication;
 import com.github.lewiswatson.camelcatbroker.model.Cat;
 import com.github.lewiswatson.camelcatbroker.model.Cat.Breed;
@@ -39,6 +40,7 @@ import lombok.extern.slf4j.Slf4j;
 @RunWith(CamelSpringBootRunner.class)
 @SpringBootTest(classes = {CamelCatBrokerApplication.class})
 @ActiveProfiles(profiles = "kafka")
+@TestPropertySource(properties = "kafka.bootstrap-servers=${spring.embedded.kafka.brokers}")
 @EnableRouteCoverage
 @Slf4j
 public class KafkaCatBrokerRouteSpringBootTest {
