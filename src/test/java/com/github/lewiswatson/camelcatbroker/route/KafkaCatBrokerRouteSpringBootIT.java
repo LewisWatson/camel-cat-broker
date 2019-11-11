@@ -37,13 +37,19 @@ import com.github.lewiswatson.camelcatbroker.model.Cat.Temperment;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Integration test that ensures the application can receive JSON-encoded Cat messages over Kafka
+ * Topic and route them correctly to cattery Kafka topics, when the kafka profile is enabled.
+ * 
+ * <p>Note: This test will use {@link EmbeddedKafkaRule} to create an embedded Kafka instance.
+ */
 @RunWith(CamelSpringBootRunner.class)
 @SpringBootTest(classes = {CamelCatBrokerApplication.class})
 @ActiveProfiles(profiles = "kafka")
 @TestPropertySource(properties = "kafka.bootstrap-servers=${spring.embedded.kafka.brokers}")
 @EnableRouteCoverage
 @Slf4j
-public class KafkaCatBrokerRouteSpringBootTest {
+public class KafkaCatBrokerRouteSpringBootIT {
 
   @Produce(uri = "direct:test-cat-broker-sender")
   private ProducerTemplate testProducer;
