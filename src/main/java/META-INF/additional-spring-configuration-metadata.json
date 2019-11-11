@@ -1,0 +1,47 @@
+{"properties": [
+  {
+    "name": "cat-broker.route.cat-broker.dlq",
+    "type": "java.lang.String",
+    "description": "Apache Camel endpoint to send Cat Messages that for some reason cannot be routed to a Cattery Channel."
+  },
+  {
+    "name": "cat-broker.route.cat-broker.cats-r-us",
+    "type": "java.lang.String",
+    "description": "Apache Camel endpoint topic for sending Cat Messages onwards to the third party cats-r-us Cattery service."
+  },
+  {
+    "name": "cat-broker.route.cat-broker.from",
+    "type": "java.lang.String",
+    "description": "Apache Camel endpoint topic that the cat-broker will route Cat Messages from"
+  },
+  {
+    "name": "cat-broker.route.cat-broker.name",
+    "type": "java.lang.String",
+    "description": "Name to give the cat broker route in logging etc"
+  },
+  {
+    "name": "kafka.bootstrap-servers",
+    "type": "java.lang.String",
+    "description": "URLs for Kafka Bootstrap Servers"
+  },
+  {
+    "name": "kafka.serializerClass",
+    "type": "java.lang.String",
+    "description": "Serializer class for sending messages via Apache Kafka"
+  },
+  {
+    "name": "producer.topic.cats-r-us",
+    "type": "java.lang.String",
+    "description": "An Apache Kafka topic for sending Cat Messages onwards to the third party cats-r-us Cattery service."
+  },
+  {
+    "name": "producer.topic.dlq",
+    "type": "java.lang.String",
+    "description": "An Apache Kafka topic to send Cat Messages that for some reason cannot be routed to a Cattery Channel."
+  },
+  {
+    "name": "consumer.topic.cat-broker",
+    "type": "java.lang.String",
+    "description": "An Apache Kafka topic for sending Cat Messages onwards to the third party cats-r-us Cattery service."
+  }
+]}

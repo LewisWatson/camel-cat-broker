@@ -1,4 +1,4 @@
-package com.github.lewiswatson.camelcatbroker.route;
+package com.github.lewiswatson.camelcatbroker.integration;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import java.util.ArrayList;
@@ -29,6 +29,7 @@ import org.springframework.kafka.test.rule.EmbeddedKafkaRule;
 import org.springframework.kafka.test.utils.ContainerTestUtils;
 import org.springframework.kafka.test.utils.KafkaTestUtils;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.TestPropertySource;
 import com.github.lewiswatson.camelcatbroker.CamelCatBrokerApplication;
 import com.github.lewiswatson.camelcatbroker.model.Cat;
 import com.github.lewiswatson.camelcatbroker.model.Cat.Breed;
@@ -36,12 +37,19 @@ import com.github.lewiswatson.camelcatbroker.model.Cat.Temperment;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Integration test that ensures the service can receive JSON-encoded Cat messages over a Kafka
+ * topic and route them correctly to cattery Kafka topics, when the kafka profile is enabled.
+ * 
+ * <p>Note: This test will use {@link EmbeddedKafkaRule} to create an embedded Kafka instance.
+ */
 @RunWith(CamelSpringBootRunner.class)
 @SpringBootTest(classes = {CamelCatBrokerApplication.class})
 @ActiveProfiles(profiles = "kafka")
+@TestPropertySource(properties = "kafka.bootstrap-servers=${spring.embedded.kafka.brokers}")
 @EnableRouteCoverage
 @Slf4j
-public class KafkaCatBrokerRouteSpringBootTest {
+public class CatBrokerKafkaProfileIT {
 
   @Produce(uri = "direct:test-cat-broker-sender")
   private ProducerTemplate testProducer;
@@ -56,6 +64,10 @@ public class KafkaCatBrokerRouteSpringBootTest {
 
   private BlockingQueue<ConsumerRecord<String, String>> records;
 
+  /*
+   * Ideally we would use the values defined by properties, but since embeddedKafka
+   * is static we need to hard code it.
+   */
   private static String[] topics = {"cat-broker", "cats-r-us", "dlq"};
 
   @ClassRule
