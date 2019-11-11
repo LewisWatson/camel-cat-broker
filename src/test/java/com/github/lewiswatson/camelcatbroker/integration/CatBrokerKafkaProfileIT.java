@@ -1,4 +1,4 @@
-package com.github.lewiswatson.camelcatbroker.route;
+package com.github.lewiswatson.camelcatbroker.integration;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import java.util.ArrayList;
@@ -38,8 +38,8 @@ import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Integration test that ensures the application can receive JSON-encoded Cat messages over Kafka
- * Topic and route them correctly to cattery Kafka topics, when the kafka profile is enabled.
+ * Integration test that ensures the service can receive JSON-encoded Cat messages over a Kafka
+ * topic and route them correctly to cattery Kafka topics, when the kafka profile is enabled.
  * 
  * <p>Note: This test will use {@link EmbeddedKafkaRule} to create an embedded Kafka instance.
  */
@@ -49,7 +49,7 @@ import lombok.extern.slf4j.Slf4j;
 @TestPropertySource(properties = "kafka.bootstrap-servers=${spring.embedded.kafka.brokers}")
 @EnableRouteCoverage
 @Slf4j
-public class KafkaCatBrokerRouteSpringBootIT {
+public class CatBrokerKafkaProfileIT {
 
   @Produce(uri = "direct:test-cat-broker-sender")
   private ProducerTemplate testProducer;
@@ -64,6 +64,10 @@ public class KafkaCatBrokerRouteSpringBootIT {
 
   private BlockingQueue<ConsumerRecord<String, String>> records;
 
+  /*
+   * Ideally we would use the values defined by properties, but since embeddedKafka
+   * is static we need to hard code it.
+   */
   private static String[] topics = {"cat-broker", "cats-r-us", "dlq"};
 
   @ClassRule
