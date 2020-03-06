@@ -18,4 +18,6 @@ public class CatRouterProperties {
   @Builder.Default
   private String destinationCatteryHeader = "destination-cattery";
 
+  private String rulesPath;
+
 }

@@ -1,0 +1,39 @@
+import com.github.lewiswatson.camelcatbroker.model.Cat;
+import com.github.lewiswatson.camelcatbroker.model.Cattery;
+import com.github.lewiswatson.camelcatbroker.model.Cat.Breed;
+import com.github.lewiswatson.camelcatbroker.model.Cat.Temperment;
+import org.slf4j.Logger;
+import org.apache.commons.math3.util.Pair;
+import java.util.List;
+
+dialect  "mvel"
+
+global Logger log;
+global List<Pair<Cattery, Double>> catteryWeights
+
+rule "increment cats-r-us weight by 1 for british blues"
+  when
+    $cat: Cat(breed == Breed.BRITISH_BLUE);
+  then
+    Pair weight = Pair.create(Cattery.CATS_R_US, 1.0);
+    log.debug("Adding weight {} for british blue cat: {}", weight, $cat);
+    catteryWeights.add(weight);
+end
+
+rule "increment paws-for-thought weight by 9 for chill cats"
+  when
+    $cat: Cat(temperment == Temperment.CHILL);
+  then
+    Pair weight = Pair.create(Cattery.PAWS_FOR_THOUGHT, 9.0);
+    log.debug("Adding weight {} for chill cat: {}", weight, $cat);
+    catteryWeights.add(weight);
+end
+
+rule "increment Feline-fine weight by 10 for fiesty cats"
+  when
+    $cat: Cat(temperment == Temperment.FIESTY);
+  then
+    Pair weight = Pair.create(Cattery.FELINE_FINE, 10.0);
+    log.debug("Adding weight {} for fiesty cat: {}", weight, $cat);
+    catteryWeights.add(weight);
+end

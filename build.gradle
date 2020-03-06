@@ -17,6 +17,12 @@ dependencies {
 	implementation 'org.apache.camel:camel-kafka:2.24.1'
 	implementation 'org.springframework.boot:spring-boot-starter-web' // only added to stop it shutting dowm immediatly...
 	implementation 'com.google.code.gson:gson:2.7'
+   implementation 'org.kie:kie-ci:7.33.0.Final'
+   implementation 'org.drools:drools-decisiontables:7.33.0.Final'
+   implementation 'org.drools:drools-core:7.33.0.Final'
+   implementation 'org.drools:drools-compiler:7.33.0.Final'
+   implementation 'org.kie:kie-spring:7.33.0.Final'
+	implementation 'org.apache.commons:commons-math3:3.6.1'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.apache.camel:camel-test-spring:2.24.1'
 	testImplementation 'org.apache.camel:camel-spring-javaconfig:2.24.1'

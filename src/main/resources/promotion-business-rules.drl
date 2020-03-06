@@ -1,0 +1,63 @@
+import co.uk.lewiswatson.promocheckout.model.Basket;
+import co.uk.lewiswatson.promocheckout.model.Product;
+import co.uk.lewiswatson.promocheckout.model.AppliedPromotion;
+import co.uk.lewiswatson.promocheckout.model.Promotion;
+import co.uk.lewiswatson.promocheckout.model.Promotion.Type;
+import java.util.Collections;
+
+dialect  "mvel"
+
+global org.slf4j.Logger log;
+
+rule "flat percent promotion"
+  when
+    $basket: Basket($products: products);
+    $product: Product($promotions:promotions) from $products
+    $promotion: Promotion(type == Type.FLAT_PERCENT) from $promotions;
+    $occurances: Number() from accumulate(String(this.equals($product.id)) from $basket.itemProductIds, count())
+  then
+    int discountInPencePerItem = Math.floor($product.getPriceInPence() * ($promotion.getProductPricePercentageDiscount() / 100));
+    int totalDiscountInPence = discountInPencePerItem * $occurances.intValue
+    log.info("applying {} promotion \"{}\" to discount {} instances of product \"{}\" by {} pence (total discount {} pence) in basket \"{}\"",
+      $promotion.type, $promotion.id, $occurances, $product.id, discountInPencePerItem, totalDiscountInPence, $basket.id);
+	$basket.applyPromotion(AppliedPromotion.builder()
+      .promotion($promotion)
+      .discountInPence(totalDiscountInPence)
+      .build());
+end
+
+rule "quantity based price override promotion"
+  when
+    $basket: Basket($products: products);
+    $product: Product($promotions:promotions) from $products
+    $promotion: Promotion(type == Type.QTY_BASED_PRICE_OVERRIDE) from $promotions;
+    $occurances : Number( intValue >= $promotion.requiredProductQuantity )
+      from accumulate( String(this == $product.id) from $basket.itemProductIds, count() )
+  then
+    double discountPerItem = $product.priceInPence - ($promotion.productPriceOverridePence / $promotion.requiredProductQuantity) ;
+    int totalDiscountInPence = Math.floor($occurances.intValue * discountPerItem) - 1;
+    log.info("applying {} promotion \"{}\" to discount {} instances of product \"{}\" to {} pence (total discount {} pence) in basket \"{}\"",
+      $promotion.getType(), $promotion.getId(), $occurances, $product.getId(), discountPerItem, totalDiscountInPence, $basket.getId());
+   	$basket.applyPromotion(AppliedPromotion.builder()
+      .promotion($promotion)
+      .discountInPence(totalDiscountInPence)
+      .build());
+end
+
+rule "buy x get y free promotion"
+  when
+    $basket: Basket($products: products);
+    $product: Product($promotions:promotions) from $products
+    $promotion: Promotion(type == Type.BUY_X_GET_Y_FREE) from $promotions;
+    $occurances : Number( intValue > $promotion.requiredProductQuantity )
+      from accumulate( String(this == $product.id) from $basket.itemProductIds, count() )
+  then
+    int numberOfFreeItems = Math.min($promotion.freeProductQuantity, $occurances.intValue - $promotion.requiredProductQuantity);
+    int totalDiscountInPence = numberOfFreeItems * $product.priceInPence;
+    log.info("applying {} promotion \"{}\" to {} instances of product \"{}\" to make {} free (total discount {} pence) in basket \"{}\"",
+      $promotion.getType(), $promotion.getId(), $occurances, $product.getId(), numberOfFreeItems, totalDiscountInPence, $basket.getId());
+   	$basket.applyPromotion(AppliedPromotion.builder()
+      .promotion($promotion)
+      .discountInPence(totalDiscountInPence)
+      .build());
+end

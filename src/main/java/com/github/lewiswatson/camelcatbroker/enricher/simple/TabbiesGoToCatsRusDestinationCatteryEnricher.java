@@ -1,5 +1,6 @@
-package com.github.lewiswatson.camelcatbroker.enricher;
+package com.github.lewiswatson.camelcatbroker.enricher.simple;
 
+import com.github.lewiswatson.camelcatbroker.enricher.DestinationCatteryEnricher;
 import org.apache.camel.Exchange;
 import com.github.lewiswatson.camelcatbroker.model.Cat;
 import com.github.lewiswatson.camelcatbroker.model.Cat.Breed;
