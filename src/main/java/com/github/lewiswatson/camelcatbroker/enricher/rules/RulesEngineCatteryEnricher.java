@@ -34,7 +34,7 @@ public class RulesEngineCatteryEnricher implements DestinationCatteryEnricher {
     KieSession kieSession = kieContainer.newKieSession();
     try {
       kieSession.setGlobal("log", log);
-      kieSession.setGlobal("catteryWeights", new ArrayList<Pair<Cattery, Long>>());
+      kieSession.setGlobal("catteryWeights", new ArrayList<Pair<Cattery, Double>>());
       kieSession.insert(cat);
       kieSession.fireAllRules();
       List<Pair<Cattery, Double>> catteryWeights = (List<Pair<Cattery, Double>>) kieSession

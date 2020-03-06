@@ -42,8 +42,8 @@ public class RulesEngineCatteryEnricherTest {
 
     Cat cat = Cat.builder().breed(Breed.BRITISH_BLUE).temperment(Temperment.CHILL).build();
     int sampleSize = 1000;
-    int expectedPercentSentToCatsRUs = 10;
-    int expectedPercentSentToPawsForThought = 90;
+    Double expectedPercentSentToCatsRUs = 10d;
+    Double expectedPercentSentToPawsForThought = 90d;
     Offset<Double> acceptablePercentageErrorMargin = Offset.offset(1.0);
 
     /*
